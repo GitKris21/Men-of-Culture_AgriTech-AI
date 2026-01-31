@@ -2,7 +2,7 @@
 
 A practical demonstration of an **LLM-powered agent** using **LangGraph** ,  that provides **continuous, personalized farming advice** based on real-time inputs like soil condition, weather, and crop stage  with a built-in **feedback loop** to re-evaluate decisions when conditions change.
 
----
+
 
 ## 📌 Overview
 
