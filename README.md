@@ -16,75 +16,51 @@ This project focuses on building an **intelligent agent** that:
 
 
 ##SYSTEM ARCHITECTURE##
+START
+→ Initialize AI Agent
 
-┌───────────────────────┐
-│        START                 │
-│   Initialize AI Agent        │
-└───────────┬───────────┘
-            │
-            ▼
-┌───────────────────────┐
-│      Human Input             │
-│  • Crop Name                 │
-│  • Sowing Date               │
-│  • Location                  │
-└───────────┬───────────┘
-            │
-            ▼
-┌──────────────────────────────────────────┐
-│               API Inputs                             │
-│  • Location API                                      │
-│  • Weather API (Open-Meteo)                          │
-│    - Current & forecast weather data                 │
-└───────────┬──────────────────────────────┘
-            │
-            ▼
-┌──────────────────────────────────────────┐
-│              Other Details                           │
-│  • Soil Moisture (derived from weather)              │
-│  • Crop Stage                                        │
-│    = Current Date − Sowing Date                      │
-└───────────┬──────────────────────────────┘
-            │
-            ▼
-┌──────────────────────────────────────────┐
-│           Input Sent to LLM                          │
-│  • Structured context passed via                     │
-│    LangGraph                                         │
-└───────────┬──────────────────────────────┘
-            │
-            ▼
-┌──────────────────────────────────────────┐
-│         LLM Searches for Solution                    │
-│  • Analyzes crop stage                               │
-│  • Evaluates weather & soil context                  │
-│  • Determines best farming actions                   │
-└───────────┬──────────────────────────────┘
-            │
-            ▼
-┌──────────────────────────────────────────┐
-│        Final Output from LLM                         │
-│  • Tailored recommendations                          │
-│  • 7-Day actionable farming plan                     │
-└───────────┬──────────────────────────────┘
-            │
-            ▼
-┌──────────────────────────────────────────┐
-│ Is there any change in weather /                     │
-│ conditions affecting the 7-day plan?                 │
-└───────────┬───────────────┬──────────────┘
-            │ YES            │ NO
-            ▼                ▼
-┌───────────────────────┐   ┌─────────────────┐
-│     Feedback Loop            │   │       END            │
-│  • Re-evaluate with          │   │  Final plan is       │
-│    updated weather           │   │  delivered to        │
-│  • Update context            │   │  the user            │
-└───────────┬───────────┘   └─────────────────┘
-            │
-            └───────────────(loops back to)
-                            "Input Sent to LLM"
+→ Human Input
+  • Crop Name
+  • Sowing Date
+  • Location
 
+→ API Inputs
+  • Location API
+  • Weather API (Open-Meteo)
+    – Current weather data
+    – Weather forecast
+
+→ Other Derived Details
+  • Soil Moisture (estimated from weather conditions)
+  • Crop Stage
+    = Current Date − Sowing Date
+
+→ Input Sent to LLM
+  • Structured contextual data
+  • Passed using LangGraph
+
+→ LLM Searches for Solution
+  • Analyzes crop stage
+  • Evaluates weather and soil context
+  • Determines optimal farming actions
+
+→ Final Output from LLM
+  • Context-aware recommendations
+  • 7-Day actionable farming plan
+
+→ Check for Weather / Condition Changes
+  • Are there changes affecting the 7-day plan?
+
+→ YES
+  → Feedback Loop
+    • Fetch updated weather data
+    • Update context
+    • Re-send inputs to LLM
+    → Back to Input Sent to LLM
+
+→ NO
+  → END
+    • Final plan delivered to the user
 
 
 ## 🧠 What the Agent Does
