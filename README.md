@@ -1,4 +1,3 @@
-# Hackron-Men-of-Culture
 # 🌾 LLM-Based Self-Correcting Smart Farming Agent
 
 A practical demonstration of an **LLM-powered agent** using **LangGraph** ,  that provides **continuous, personalized farming advice** based on real-time inputs like soil condition, weather, and crop stage  with a built-in **feedback loop** to re-evaluate decisions when conditions change.
@@ -19,68 +18,68 @@ This project focuses on building an **intelligent agent** that:
 ##SYSTEM ARCHITECTURE##
 
 ┌───────────────────────┐
-│        START          │
-│   Initialize AI Agent │
+│        START                 │
+│   Initialize AI Agent        │
 └───────────┬───────────┘
             │
             ▼
 ┌───────────────────────┐
-│      Human Input      │
-│  • Crop Name          │
-│  • Sowing Date        │
-│  • Location           │
+│      Human Input             │
+│  • Crop Name                 │
+│  • Sowing Date               │
+│  • Location                  │
 └───────────┬───────────┘
             │
             ▼
 ┌──────────────────────────────────────────┐
-│               API Inputs                 │
-│  • Location API                          │
-│  • Weather API (Open-Meteo)              │
-│    - Current & forecast weather data     │
+│               API Inputs                             │
+│  • Location API                                      │
+│  • Weather API (Open-Meteo)                          │
+│    - Current & forecast weather data                 │
 └───────────┬──────────────────────────────┘
             │
             ▼
 ┌──────────────────────────────────────────┐
-│              Other Details               │
-│  • Soil Moisture (derived from weather)  │
-│  • Crop Stage                            │
-│    = Current Date − Sowing Date          │
+│              Other Details                           │
+│  • Soil Moisture (derived from weather)              │
+│  • Crop Stage                                        │
+│    = Current Date − Sowing Date                      │
 └───────────┬──────────────────────────────┘
             │
             ▼
 ┌──────────────────────────────────────────┐
-│           Input Sent to LLM              │
-│  • Structured context passed via         │
-│    LangGraph                             │
+│           Input Sent to LLM                          │
+│  • Structured context passed via                     │
+│    LangGraph                                         │
 └───────────┬──────────────────────────────┘
             │
             ▼
 ┌──────────────────────────────────────────┐
-│         LLM Searches for Solution        │
-│  • Analyzes crop stage                   │
-│  • Evaluates weather & soil context      │
-│  • Determines best farming actions       │
+│         LLM Searches for Solution                    │
+│  • Analyzes crop stage                               │
+│  • Evaluates weather & soil context                  │
+│  • Determines best farming actions                   │
 └───────────┬──────────────────────────────┘
             │
             ▼
 ┌──────────────────────────────────────────┐
-│        Final Output from LLM             │
-│  • Tailored recommendations              │
-│  • 7-Day actionable farming plan         │
+│        Final Output from LLM                         │
+│  • Tailored recommendations                          │
+│  • 7-Day actionable farming plan                     │
 └───────────┬──────────────────────────────┘
             │
             ▼
 ┌──────────────────────────────────────────┐
-│ Is there any change in weather /         │
-│ conditions affecting the 7-day plan?     │
+│ Is there any change in weather /                     │
+│ conditions affecting the 7-day plan?                 │
 └───────────┬───────────────┬──────────────┘
-            │ YES           │ NO
+            │ YES            │ NO
             ▼                ▼
 ┌───────────────────────┐   ┌─────────────────┐
-│     Feedback Loop     │   │       END       │
-│  • Re-evaluate with   │   │  Final plan is  │
-│    updated weather    │   │  delivered to   │
-│  • Update context     │   │  the user       │
+│     Feedback Loop            │   │       END            │
+│  • Re-evaluate with          │   │  Final plan is       │
+│    updated weather           │   │  delivered to        │
+│  • Update context            │   │  the user            │
 └───────────┬───────────┘   └─────────────────┘
             │
             └───────────────(loops back to)
@@ -213,3 +212,13 @@ The user receives a context-aware, up-to-date decision support output tailored t
 - Multilingual farmer support
 
 ---
+
+## ➕ Additional Ideas Added
+
+The following enhancements were **added beyond the original scope** to strengthen the agent design:
+
+- Continuous monitoring instead of one-time recommendation
+- Explicit decision re-validation logic
+- LLM-driven reasoning rather than rule-based logic
+- Scalable agent architecture using LangGraph
+
