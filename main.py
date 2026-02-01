@@ -72,6 +72,10 @@ def observe_environment(state: FarmState):
 # ---------------- 7-DAY PLANNER ----------------
 
 def plan_week(state: FarmState):
+    llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    temperature=0.3,
+    api_key=os.getenv("GROQ_API_KEY"))
     prompt = f"""
 You are an agricultural planning agent.
 
@@ -90,7 +94,7 @@ Rules:
 - Keep it simple and practical
 """
 
-    response = llm.invoke([HumanMessage(content=prompt)])
+    response = llm.invoke(prompt)
 
     return {
         "weekly_plan": response.content
